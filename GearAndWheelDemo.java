@@ -19,10 +19,10 @@ class Gear{
 	private int chainring;
 	private int cog;
 	private Wheel wheel;
-	public Gear(int chainring, int cog, Wheel wheel){
+	public Gear(int chainring, int cog, double rim, double tire){
 		this.chainring = chainring;
 		this.cog = cog;
-		this.wheel = wheel;
+		this.wheel = new Wheel(rim, tire);
 	}
 
 	public double ratio() {
@@ -37,6 +37,6 @@ class Gear{
 public class GearAndWheelDemo{
 	public static void main(String[] args){
 		System.out.println("Started...");
-		System.out.println(new Gear(52, 11, new Wheel(26, 1.5)).gearInches());
+		System.out.println(new Gear(52, 11, 26, 1.5).gearInches());
 	}
 }
