@@ -5,10 +5,17 @@ import java.util.HashMap;
 
 class Bicycle{
 	public String size;
+
+	public Bicycle(String size){
+		this.size = size;
+	}
+}
+
+class RoadBike extends Bicycle{
 	public String tapeColor;
 
-	public Bicycle(String size, String tapeColor){
-		this.size = size;
+	public RoadBike(String size, String tapeColor){
+		super(size);
 		this.tapeColor = tapeColor;
 	}
 
@@ -25,7 +32,7 @@ class MountainBike extends Bicycle{
 	private String frontShock;
 	private String rearShock;
 	public MountainBike(String size, String tapeColor, String frontShock, String rearShock){
-		super(size, tapeColor);
+		super(size);
 		this.frontShock = frontShock;
 		this.rearShock = rearShock;
 	}
