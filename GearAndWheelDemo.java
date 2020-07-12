@@ -22,9 +22,17 @@ class Gear{
 	private int cog;
 	private Wheel wheel;
 	public Gear(HashMap<String, Object> args){
-		this.chainring = (int) args.getOrDefault("chainring", 0);
-		this.cog = (int) args.getOrDefault("cog", 0);
-		this.wheel = (Wheel) args.getOrDefault("wheel", new Wheel(0, 0));
+		HashMap<String, Object> argsV = new HashMap<String, Object> (){
+			{
+				put("cog", 0); 
+				put("chainring", 0); 
+				put("wheel", new Wheel(0, 0));
+			}
+		};
+		argsV.putAll(args);
+		this.chainring = (int) argsV.get("chainring");
+		this.cog = (int) argsV.get("cog");
+		this.wheel = (Wheel) argsV.get("wheel");
 	}
 
 	public double ratio() {
@@ -44,7 +52,7 @@ public class GearAndWheelDemo{
 				{
 					put("cog", 11); 
 					put("chainring", 52); 
-					// put("wheel", new Wheel(26, 1.5));
+					put("wheel", new Wheel(26, 1.5));
 				}
 			}
 		).gearInches());
