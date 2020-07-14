@@ -20,7 +20,15 @@ abstract class Bicycle{
 	}
 
 	abstract public String defaultTireSize();
-	abstract public HashMap<String, String> getSpares();
+
+	public HashMap<String, String> getSpares(){
+		HashMap<String, String> newMap = new HashMap<> ();
+		newMap.put("chain", defaultChain());
+		newMap.put("tireSize", defaultTireSize());
+		return newMap;
+	}
+
+	// declare methods
 }
 
 class RoadBike extends Bicycle{
@@ -32,9 +40,7 @@ class RoadBike extends Bicycle{
 	}
 
 	public HashMap<String, String> getSpares(){
-		HashMap<String, String> newMap = new HashMap<> ();
-		newMap.put("chain", defaultChain());
-		newMap.put("tireSize", defaultTireSize());
+		HashMap<String, String> newMap = super.getSpares();
 		newMap.put("tapeColor", tapeColor);
 		return newMap;
 	}
@@ -56,9 +62,7 @@ class MountainBike extends Bicycle{
 	}
 	
 	public HashMap<String, String> getSpares(){
-		HashMap<String, String> newMap = new HashMap<> ();
-		newMap.put("chain", defaultChain());
-		newMap.put("tireSize", defaultTireSize());
+		HashMap<String, String> newMap = super.getSpares();
 		newMap.put("rearShock", rearShock);		
 		return newMap;
 	}
