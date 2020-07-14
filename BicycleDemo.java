@@ -14,6 +14,8 @@ abstract class Bicycle{
 		this.tireSize = tireSize;
 	}
 
+	abstract public HashMap<String, String> localSpares();
+
 	public String defaultChain(){
 		if(chain!=null) return chain;
 		return "10-speed";
@@ -25,6 +27,7 @@ abstract class Bicycle{
 		HashMap<String, String> newMap = new HashMap<> ();
 		newMap.put("chain", defaultChain());
 		newMap.put("tireSize", defaultTireSize());
+		newMap.putAll(localSpares());
 		return newMap;
 	}
 
@@ -39,8 +42,8 @@ class RoadBike extends Bicycle{
 		this.tapeColor = tapeColor;
 	}
 
-	public HashMap<String, String> getSpares(){
-		HashMap<String, String> newMap = super.getSpares();
+	public HashMap<String, String> localSpares(){
+		HashMap<String, String> newMap = new HashMap<String, String> ();
 		newMap.put("tapeColor", tapeColor);
 		return newMap;
 	}
@@ -49,6 +52,7 @@ class RoadBike extends Bicycle{
 		if(tireSize!=null) return tireSize;
 		return "23";
 	}
+
 }
 
 class MountainBike extends Bicycle{
@@ -61,8 +65,8 @@ class MountainBike extends Bicycle{
 		this.rearShock = rearShock;
 	}
 	
-	public HashMap<String, String> getSpares(){
-		HashMap<String, String> newMap = super.getSpares();
+	public HashMap<String, String> localSpares(){
+		HashMap<String, String> newMap = new HashMap<String, String> ();
 		newMap.put("rearShock", rearShock);		
 		return newMap;
 	}
@@ -70,6 +74,31 @@ class MountainBike extends Bicycle{
 	public String defaultTireSize(){
 		if(tireSize!=null) return tireSize;
 		return "2.1";
+	}
+
+}
+
+class RecumbentBike extends Bicycle{
+	private String flag;
+	public RecumbentBike(String size, String chain, String tireSize, String frontShock, String rearShock, String flag){
+		super(size, chain, tireSize);
+		this.flag = flag;
+	}
+
+	public HashMap<String, String> localSpares(){
+		HashMap<String, String> newMap = new HashMap<String, String> ();
+		newMap.put("flag", flag);		
+		return newMap;
+	}
+
+	public String defaultChain(){
+		if(chain!=null) return chain;
+		return "9-speed";
+	}
+
+	public String defaultTireSize(){
+		if(tireSize!=null) return tireSize;
+		return "28";
 	}
 
 }
@@ -83,5 +112,9 @@ public class BicycleDemo{
 		MountainBike bike1 = new MountainBike("S", null, null, "Manitou", "Fox");
 		System.out.println(bike1.size);
 		System.out.println(bike1.getSpares());
+
+		RecumbentBike bike2 = new RecumbentBike("L", null, null, null, null, "orange");
+		System.out.println(bike2.size);
+		System.out.println(bike2.getSpares());
 	}
 }
